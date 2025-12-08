@@ -1,0 +1,70 @@
+document.addEventListener("DOMContentLoaded", (e) => {
+
+    const otherElements = document.querySelector(".content-item-home");
+
+    const allElements = document.querySelectorAll(".content-items > div:not(.identifier)")
+    const allElementsLocation = [
+        [allElements[0], allElements[1], allElements[2], allElements[3]],
+        [allElements[4], allElements[5], allElements[6], allElements[7]],
+        [allElements[8], allElements[9], allElements[10], allElements[11]]
+    ].map(row =>
+        row.map(element => {
+            const rect = element.getBoundingClientRect();
+            return { top: rect.top, left: rect.left };
+        })
+    );
+
+    const height = otherElements.clientHeight;
+    const width = otherElements.clientWidth;
+
+    const contentContainer = document.querySelector(".content")
+    contentContainer.style.height = height * 3 + "px"
+
+    const identifierElement = document.querySelector(".identifier");
+    identifierElement.style.height = height + "px";
+    identifierElement.style.width = width + "px";
+
+    let currentLocation = [0, 0]
+
+    identifierElement.style.top = allElementsLocation[currentLocation[0]][currentLocation[1]].top + 1 + "px";
+    identifierElement.style.left = allElementsLocation[currentLocation[0]][currentLocation[1]].left + "px";
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key == "ArrowRight") {
+            if (currentLocation[1] >= 3) {
+                // do nothing 
+            } else {
+                currentLocation[1] += 1
+                identifierElement.style.top = allElementsLocation[currentLocation[0]][currentLocation[1]].top + 1 + "px";
+                identifierElement.style.left = allElementsLocation[currentLocation[0]][currentLocation[1]].left + "px";
+            }
+        } else if (event.key == "ArrowDown") {
+            if (currentLocation[0] >= 2) {
+                // do nothing 
+            } else {
+                currentLocation[0] += 1
+                identifierElement.style.top = allElementsLocation[currentLocation[0]][currentLocation[1]].top + 1 + "px";
+                identifierElement.style.left = allElementsLocation[currentLocation[0]][currentLocation[1]].left + "px";
+            }
+        } else if (event.key == "ArrowLeft") {
+            if (currentLocation[1] <= 0) {
+                // do nothing 
+            } else {
+                currentLocation[1] -= 1
+                identifierElement.style.top = allElementsLocation[currentLocation[0]][currentLocation[1]].top + 1 + "px";
+                identifierElement.style.left = allElementsLocation[currentLocation[0]][currentLocation[1]].left + "px";
+            }
+        } else if (event.key == "ArrowUp") {
+            if (currentLocation[0] <= 0) {
+                // do nothing 
+            } else {
+                currentLocation[0] -= 1
+                identifierElement.style.top = allElementsLocation[currentLocation[0]][currentLocation[1]].top + 1 + "px";
+                identifierElement.style.left = allElementsLocation[currentLocation[0]][currentLocation[1]].left + "px";
+            }
+        } else {
+            // do nothing for now
+        }
+    })
+
+})
