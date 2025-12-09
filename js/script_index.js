@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     const otherElements = document.querySelector(".content-item-home");
 
     const allElements = document.querySelectorAll(".content-items > div:not(.identifier)")
+
     const allElementsLocation = [
         [allElements[0], allElements[1], allElements[2], allElements[3]],
         [allElements[4], allElements[5], allElements[6], allElements[7]],
@@ -10,7 +11,12 @@ document.addEventListener("DOMContentLoaded", (e) => {
     ].map(row =>
         row.map(element => {
             const rect = element.getBoundingClientRect();
-            return { top: rect.top, left: rect.left };
+            console.log(element.innerHTML);
+            return {
+                top: rect.top,
+                left: rect.left,
+                value: element.innerText
+            };
         })
     );
 
@@ -37,6 +43,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 currentLocation[1] += 1
                 identifierElement.style.top = allElementsLocation[currentLocation[0]][currentLocation[1]].top + 1 + "px";
                 identifierElement.style.left = allElementsLocation[currentLocation[0]][currentLocation[1]].left + "px";
+                identifierElement.innerText = allElementsLocation[currentLocation[0]][currentLocation[1]].value
             }
         } else if (event.key == "ArrowDown") {
             if (currentLocation[0] >= 2) {
@@ -45,6 +52,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 currentLocation[0] += 1
                 identifierElement.style.top = allElementsLocation[currentLocation[0]][currentLocation[1]].top + 1 + "px";
                 identifierElement.style.left = allElementsLocation[currentLocation[0]][currentLocation[1]].left + "px";
+                identifierElement.innerText = allElementsLocation[currentLocation[0]][currentLocation[1]].value
             }
         } else if (event.key == "ArrowLeft") {
             if (currentLocation[1] <= 0) {
@@ -53,6 +61,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 currentLocation[1] -= 1
                 identifierElement.style.top = allElementsLocation[currentLocation[0]][currentLocation[1]].top + 1 + "px";
                 identifierElement.style.left = allElementsLocation[currentLocation[0]][currentLocation[1]].left + "px";
+                identifierElement.innerText = allElementsLocation[currentLocation[0]][currentLocation[1]].value
             }
         } else if (event.key == "ArrowUp") {
             if (currentLocation[0] <= 0) {
@@ -61,6 +70,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 currentLocation[0] -= 1
                 identifierElement.style.top = allElementsLocation[currentLocation[0]][currentLocation[1]].top + 1 + "px";
                 identifierElement.style.left = allElementsLocation[currentLocation[0]][currentLocation[1]].left + "px";
+                identifierElement.innerText = allElementsLocation[currentLocation[0]][currentLocation[1]].value
             }
         } else {
             // do nothing for now
