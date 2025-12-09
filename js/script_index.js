@@ -1,5 +1,5 @@
-document.addEventListener("DOMContentLoaded", (e) => {
-
+document.addEventListener("DOMContentLoaded", () => {
+    // finding elements
     const otherElements = document.querySelector(".content-item-home");
 
     const allElements = document.querySelectorAll(".content-items > div:not(.identifier)")
@@ -34,7 +34,10 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
     identifierElement.style.top = allElementsLocation[currentLocation[0]][currentLocation[1]].top + 1 + "px";
     identifierElement.style.left = allElementsLocation[currentLocation[0]][currentLocation[1]].left + "px";
+    identifierElement.innerText = allElementsLocation[currentLocation[0]][currentLocation[1]].value;
 
+
+    // key down event
     document.addEventListener("keydown", (event) => {
         if (event.key == "ArrowRight") {
             if (currentLocation[1] >= 3) {
@@ -76,5 +79,27 @@ document.addEventListener("DOMContentLoaded", (e) => {
             // do nothing for now
         }
     })
+
+    // rain element
+    const windowWidth = window.innerWidth;
+    const maximumAnimationDuration = 15;
+    setInterval(() => {
+        const left = Math.floor(Math.random() * windowWidth)
+        const animationDuration = Math.floor(Math.random() * maximumAnimationDuration) + 5
+        const rain = document.createElement("div")
+        rain.classList.add("rain-element")
+
+        rain.style.left = left + "px"
+        rain.style.animationDuration = animationDuration + "s"
+
+        allDrops = document.querySelectorAll(".rain-element")
+        console.log(allDrops);
+
+        rain.addEventListener("animationend", () => {
+            rain.remove()
+        })
+
+        document.body.appendChild(rain)
+    }, 200)
 
 })
