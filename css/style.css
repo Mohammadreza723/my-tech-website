@@ -24,6 +24,7 @@
     animation: linear 1s rain-animation;
     z-index: 0;
 }
+
 .rain-element::before {
     content: "";
     height: 100%;
@@ -44,6 +45,46 @@
     left: 0px;
     right: 0px;
     background-color: rgba(255, 115, 0, 0.3);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 1s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 100vh;
+    right: 0;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.loading>.spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid #ccc;
+    border-top-color: #ff6f00;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.active {
+    z-index: 1000;
+    bottom: 0;
+    opacity: 100%;
 }
 
 body {
@@ -111,11 +152,15 @@ body {
     border-top: 1px solid rgba(255, 115, 0, 0.5);
     font-size: 25px;
     transition: .2s ease-in-out;
+    -webkit-user-select: none;
+    user-select: none;
 }
+
 .app>.content>.content-items>div:hover {
     background-color: rgba(255, 115, 0, 1);
     color: black;
 }
+
 .app>.content>.content-items>.identifier {
     color: black;
     position: absolute;

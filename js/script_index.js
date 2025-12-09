@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     ].map(row =>
         row.map(element => {
             const rect = element.getBoundingClientRect();
-            console.log(element.innerHTML);
             return {
                 top: rect.top,
                 left: rect.left,
@@ -80,6 +79,32 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 
+    // click event
+    allElements.forEach((element) => {
+        element.addEventListener("click", (e) => {
+            if (e.target.innerText === "") {
+                // do nothing for now
+            } else {
+                const currentLocation = window.location.href;
+                const pageName = e.target.getAttribute("address");
+                let newAdrress = currentLocation.split("/")
+                newAdrress.pop()
+                newAdrress.push(pageName)
+                let destination = newAdrress.join("/")
+
+                const loadingElement = document.querySelector(".loading")
+                loadingElement.classList.add("active")
+                setTimeout(() => {
+                    window.location.href = destination
+                }, 3000)
+            }
+        })
+    })
+
+    // identifierElement.addEventListener("click", () => {
+
+    // })
+
     // rain element
     const windowWidth = window.innerWidth;
     const maximumAnimationDuration = 15;
@@ -91,9 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         rain.style.left = left + "px"
         rain.style.animationDuration = animationDuration + "s"
-
-        allDrops = document.querySelectorAll(".rain-element")
-        console.log(allDrops);
 
         rain.addEventListener("animationend", () => {
             rain.remove()
