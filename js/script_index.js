@@ -37,7 +37,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // key down event
+    const useValue = (initialValue) => {
+        let value = initialValue;
+
+        return [
+            () => value,
+            (newValue) => value = newValue
+        ];
+    };
+    const [status, setStatus] = useValue("")
     document.addEventListener("keydown", (event) => {
+        setStatus(identifierElement.innerText)
         if (event.key == "ArrowRight") {
             if (currentLocation[1] >= 3) {
                 // do nothing 
@@ -67,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         } else if (event.key == "ArrowUp") {
             if (currentLocation[0] <= 0) {
-                // do nothing 
+                // do nothing for now
             } else {
                 currentLocation[0] -= 1
                 identifierElement.style.top = allElementsLocation[currentLocation[0]][currentLocation[1]].top + 1 + "px";
@@ -75,7 +85,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 identifierElement.innerText = allElementsLocation[currentLocation[0]][currentLocation[1]].value
             }
         } else {
-            // do nothing for now
+            console.log(status());
+            if (event.key == "Enter") {
+                const currentLocation = window.location.href;
+                const pageName = String(status()).toLowerCase();
+                let newAdrress = currentLocation.split("/")
+                newAdrress.pop()
+                newAdrress.push(pageName)
+                let destination = newAdrress.join("/") + ".html"
+                const loadingElement = document.querySelector(".loading")
+                loadingElement.classList.add("active")
+                console.log(destination);
+                setTimeout(() => {
+                    window.location.href = destination
+                }, 3000)
+            }
         }
     })
 
@@ -101,8 +125,8 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     })
 
-    // identifierElement.addEventListener("click", () => {
-
+    // identifierElement.addEventListener("click", (e) => {
+    //     console.log(e.target.value);
     // })
 
     // rain element
