@@ -17,5 +17,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.body.appendChild(rain)
     }, 200)
+    // ---------------------------------------
+    const backButton = document.querySelector(".back")
+    backButton.addEventListener("click", () => {
+        const currentLocation = window.location.href;
+        let newAdrress = currentLocation.split("/")
+        newAdrress.pop()
+        let destination = newAdrress.join("/")
 
+        const loadingElement = document.querySelector(".loading")
+        loadingElement.classList.add("active")
+        setTimeout(() => {
+            window.location.href = destination
+        }, 3000)
+    })
 })
