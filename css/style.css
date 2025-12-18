@@ -119,6 +119,7 @@ body {
     width: 30%;
     aspect-ratio: 1/1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
@@ -127,6 +128,70 @@ body {
 .app>.content>.content-image>img {
     width: 80%;
 }
+
+.app > .content > .content-image > .keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.app > .content > .content-image > .keyboard > .row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.app > .content > .content-image > .keyboard > .row > .key {
+    width: 62px;
+    height: 62px;
+
+    background: linear-gradient(
+        145deg,
+        #1c1f24,
+        #0f1115
+    );
+
+    border-radius: 12px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 22px;
+    color: #f8fafc;
+
+    border: 1px solid rgba(255, 140, 0, 0.25);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+    cursor: default;
+
+    -webkit-user-select: none;
+    user-select: none;
+
+    transition:
+        transform 0.12s ease,
+        box-shadow 0.12s ease,
+        border-color 0.12s ease,
+        color 0.12s ease;
+}
+
+.app > .content > .content-image > .keyboard > .row > .key:hover {
+    border-color: rgba(255, 140, 0, 0.55);
+    color: #ff8c00;
+}
+
+.app > .content > .content-image > .keyboard > .row > .key:active {
+    transform: translateY(3px);
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.7),
+        inset 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+
 
 .app>.content>.content-items {
     height: 100%;
