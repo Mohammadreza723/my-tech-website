@@ -133,6 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const windowWidth = window.innerWidth;
     const maximumAnimationDuration = 15;
     setInterval(() => {
+        console.log("Hello");
         const left = Math.floor(Math.random() * windowWidth)
         const animationDuration = Math.floor(Math.random() * maximumAnimationDuration) + 5
         const rain = document.createElement("div")

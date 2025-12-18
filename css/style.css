@@ -1,3 +1,4 @@
+/* ------------ home.html -------------- */
 * {
     font-family: 'Courier New', Courier, monospace;
     box-sizing: border-box;
@@ -129,27 +130,25 @@ body {
     width: 80%;
 }
 
-.app > .content > .content-image > .keyboard {
+.app>.content>.content-image>.keyboard {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-.app > .content > .content-image > .keyboard > .row {
+.app>.content>.content-image>.keyboard>.row {
     display: flex;
     justify-content: center;
     gap: 12px;
 }
 
-.app > .content > .content-image > .keyboard > .row > .key {
+.app>.content>.content-image>.keyboard>.row>.key {
     width: 62px;
     height: 62px;
 
-    background: linear-gradient(
-        145deg,
-        #1c1f24,
-        #0f1115
-    );
+    background: linear-gradient(145deg,
+            #1c1f24,
+            #0f1115);
 
     border-radius: 12px;
 
@@ -178,20 +177,18 @@ body {
         color 0.12s ease;
 }
 
-.app > .content > .content-image > .keyboard > .row > .key:hover {
+.app>.content>.content-image>.keyboard>.row>.key:hover {
     border-color: rgba(255, 140, 0, 0.55);
     color: #ff8c00;
 }
 
-.app > .content > .content-image > .keyboard > .row > .key:active {
+.app>.content>.content-image>.keyboard>.row>.key:active {
     transform: translateY(3px);
 
     box-shadow:
         0 4px 10px rgba(0, 0, 0, 0.7),
         inset 0 2px 4px rgba(0, 0, 0, 0.6);
 }
-
-
 
 .app>.content>.content-items {
     height: 100%;
@@ -232,4 +229,26 @@ body {
     background-color: rgba(255, 115, 0, 1);
     transition: all .05s ease-in-out;
     font-size: 30px;
+}
+
+/* ------------ projects.html -------------- */
+
+.app>button {
+    all: unset;
+
+    cursor: pointer;
+    position: absolute;
+    color: orange;
+    top: 10px;
+    left: 10px;
+    height: 40px;
+    width: 100px;
+    font-size: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: invert(40px);
+    backdrop-filter: invert(40px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
